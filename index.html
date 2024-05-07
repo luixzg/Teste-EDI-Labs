@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Estados da Região</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3498db;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #regiao {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #estados {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        #estados p {
+            margin: 5px 0;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #ordenacao {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estados da Região</h1>
+    <select id="regiao">
+        <option value="1">Norte</option>
+        <option value="2">Nordeste</option>
+        <option value="3">Centro-Oeste</option>
+        <option value="4">Sudeste</option>
+        <option value="5">Sul</option>
+    </select>
+    
+    <div id="ordenacao">
+        <button id="alternarOrdem">Alternar Ordem</button>
+    </div>
+
+    <div id="estados"></div>
+    <script>
+        const regiaoElement = document.getElementById('regiao');
+        const estadosElement = document.getElementById('estados');
+        const alternarOrdemButton = document.getElementById('alternarOrdem');
+        let ordemCrescente = true;
+
+        regiaoElement.addEventListener('change', () => {
+            ordemCrescente = true; // Resetar a ordem ao mudar a região
+            fetchEstados();
+        });
+
+        alternarOrdemButton.addEventListener('click', () => {
+            ordemCrescente = !ordemCrescente; // Alternar a ordem
+            fetchEstados();
+        });
+
+        function fetchEstados() {
+            fetch(`http://localhost:3000/${regiaoElement.value}/estados`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!ordemCrescente) {
+                        data.reverse(); // Inverter a ordem se for decrescente
+                    }
+                    estadosElement.innerHTML = data.map(estado => '<p>' + estado.nome + '</p>').join('');
+                });
+        }
+
+        // Buscar os estados ao carregar a página
+        fetchEstados();
+    </script>
+</body>
+</html>
