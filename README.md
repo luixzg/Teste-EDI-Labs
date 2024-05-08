@@ -14,7 +14,7 @@
 
 GET por ID
 
-• A criação da API contendo os métodos {id}/estados para listar todos os estados da região e o método {id}/csv que deverá gerar um arquivo excel com a lista de Estados da região referente ao ID, se encontra no serviço utilizado "Postman", segue o passo a passo para acessá-lo:
+• A criação da API contendo os métodos {id}/estados para listar todos os estados da região e o método {id}/csv que deverá gerar um arquivo excel com a lista de Estados da região referente ao ID, se encontra no serviço utilizado "Postman", segue o passo-a-passo para acessá-lo:
 
 **1:** Através do link de convite: "https://app.getpostman.com/join-team?invite_code=39a802085a7a700f831480510571b8b5" é possivel acessar a parte de "Collections" onde se encontra as etapas solicitadas, localizadas na opção "View complete documentation:
 
